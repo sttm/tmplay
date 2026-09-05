@@ -1,5 +1,5 @@
-# ▀▀██▀▀ ▄█▀▄▀█ ▄█▀██ ▄█    ▄█▀██ ██  █
-#   ██   ██   █ ██▀▀▀ ██▄▄▄ ██▀██ ▀▀█▀▀
+▀▀██▀▀ ▄█▀▄▀█ ▄█▀██ ▄█    ▄█▀██ ██  █
+  ██   ██   █ ██▀▀▀ ██▄▄▄ ██▀██ ▀▀█▀▀
 
 Terminal music player and local music-library tool for macOS, written in
 C++20. It plays local and online tracks, searches YouTube Music, downloads
