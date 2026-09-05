@@ -1,0 +1,40 @@
+# CMake
+build/
+build-*/
+dist/
+external/
+models/
+.venv/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.cmake
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Build artifacts
+*.o
+*.a
+*.lib
+*.so
+*.dylib
+*.exe
+*.out
+
+# Temporary files
+config.toml
+*.tmp
+*.log
+*.zip
+*.py[cod]
+__pycache__/
+*.back
+Last/
+text.txt

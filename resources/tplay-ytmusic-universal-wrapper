@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# PyInstaller uses architecture-specific CPython extension modules.  The
+# Universal 2 application keeps one complete runtime for each native slice
+# and selects it from the actual process architecture (also correct under
+# Rosetta).
+case "$(uname -m)" in
+  arm64|x86_64) runtime_arch="$(uname -m)" ;;
+  *)
+    echo "Unsupported macOS architecture for YouTube Music search: $(uname -m)" >&2
+    exit 1
+    ;;
+esac
+
+exec "$(dirname "$0")/../../Resources/ytmusic-runtime-${runtime_arch}/tmplay-ytmusic" "$@"

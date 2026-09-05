@@ -1,0 +1,79 @@
+# Public tmplay configuration template. Copy it to config.toml only when
+# configuring manually; CMake automatically places a copy in the build dir.
+
+[music]
+# root_folder = "~/Music/tmplay"
+directories = []
+formats = ["mp3", "m4a", "wav", "flac", "aiff", "aac", "ogg", "opus"]
+download_format = "m4a"
+
+[library]
+enabled = true
+database_path = "~/Music/tmplay/tmplay_library.db"
+sync_folder = ""
+export_serato = true
+export_rekordbox = true
+export_traktor = true
+export_json = true
+
+[player]
+volume = 80
+fps = 30
+
+[ui]
+selection_style = "full"
+show_track_numbers = true
+
+[ytdlp]
+cookies_from_browser = []
+cookies_path = ""
+
+[audd]
+# Personal key from https://dashboard.audd.io/. FIND is hidden when empty.
+api_key = ""
+listen_sec = 12
+
+[input]
+cursor_type = "bar"
+
+[telegram]
+enabled = false
+mode = "bot"
+bot_token = ""
+download_root = "~/Music/tmplay/Telegram"
+
+[columns]
+time = true
+bpm = true
+key = true
+genre = true
+size = true
+kbps = true
+rate = true
+frmt = true
+order = ["bpm", "key", "genre", "time", "size", "kbps", "rate", "frmt"]
+
+[demucs]
+backend = "rust"
+stems = 2
+two_stem_source = "vocals"
+output_directory = ""
+output_format = "wav"
+jobs = 0
+overlap = 0.25
+shift_seconds = 0.5
+
+[autocue]
+enabled = true
+write_serato = true
+write_traktor = true
+write_json = true
+backup_before_write = true
+overwrite_existing_cues = true
+cleanup_after_write = true
+sync_prefer = "serato"
+mode = "structure"
+beats_per_bar = 4
+snap_to_bar = true
+waveform_color = "gray"
+playhead_color = "green"

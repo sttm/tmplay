@@ -1,0 +1,13 @@
+# GitHub-generated source archives should contain only the source and files
+# needed to build tmplay. Release .app archives are created separately.
+/tests export-ignore
+/Last export-ignore
+/text.txt export-ignore
+/build export-ignore
+/build-* export-ignore
+/dist export-ignore
+/external export-ignore
+/models export-ignore
+/.universal-merge.* export-ignore
+/.vscode export-ignore
+/.idea export-ignore

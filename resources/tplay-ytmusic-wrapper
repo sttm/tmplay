@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# The onedir PyInstaller runtime stays beside this small launcher.  Unlike
+# --onefile it is not unpacked to a temporary directory for every album
+# search, which keeps ytmusicapi startup close to the system-Python version.
+exec "$(dirname "$0")/../../Resources/ytmusic-runtime/tmplay-ytmusic" "$@"

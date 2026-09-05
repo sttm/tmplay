@@ -1,0 +1,54 @@
+diff --git a/demucs-cli/src/main.rs b/demucs-cli/src/main.rs
+index e234a14..94e4cfb 100644
+--- a/demucs-cli/src/main.rs
++++ b/demucs-cli/src/main.rs
+@@ -46,6 +46,12 @@ struct Cli {
+     #[arg(short, long, default_value = "./stems/")]
+     output: PathBuf,
+ 
++    /// Use this local safetensors file instead of the model cache/download.
++    /// This is intended for applications that bundle the model with their
++    /// executable and therefore must work without network access.
++    #[arg(long)]
++    model_path: Option<PathBuf>,
++
+     /// Print layer-by-layer debug stats
+     #[arg(long)]
+     debug: bool,
+@@ -123,18 +129,25 @@ fn run() -> Result<()> {
+     let opts = build_options(info, &selected);
+ 
+     // 3. Ensure model weights are cached
+-    let provider = FsProvider::new().context("Failed to initialize model cache")?;
+-    let bytes = if provider.is_cached(info) {
+-        eprintln!("Loading cached model: {}", info.id);
+-        provider
+-            .load_cached(info)
+-            .context("Failed to load cached model")?
++    let bytes = if let Some(path) = &cli.model_path {
++        eprintln!("Loading bundled model: {}", path.display());
++        std::fs::read(path).with_context(|| {
++            format!("Failed to read model weights from {}", path.display())
++        })?
+     } else {
+-        let data = download::fetch(info)?;
+-        provider
+-            .cache_model(info, &data)
+-            .context("Failed to cache model")?;
+-        data
++        let provider = FsProvider::new().context("Failed to initialize model cache")?;
++        if provider.is_cached(info) {
++            eprintln!("Loading cached model: {}", info.id);
++            provider
++                .load_cached(info)
++                .context("Failed to load cached model")?
++        } else {
++            let data = download::fetch(info)?;
++            provider
++                .cache_model(info, &data)
++                .context("Failed to cache model")?;
++            data
++        }
+     };
+ 
+     // 4. Read input audio

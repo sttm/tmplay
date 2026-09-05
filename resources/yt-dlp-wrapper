@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Do not inherit incompatible user plug-ins or configuration from another
+# yt-dlp installation. `--ignore-config` alone does not disable the default
+# ~/.config/yt-dlp/plugins directory, which can break the standalone updater.
+# The bundled executable remains self-updatable via -U.
+exec "$(dirname "$0")/yt-dlp-bin" --ignore-config --no-plugin-dirs "$@"

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+bundle_root="$(cd "$(dirname "$0")/../.." && pwd)"
+player="$bundle_root/Contents/MacOS/tmplay"
+
+# Finder starts an app without a terminal. A terminal UI needs a TTY, so open
+# the companion command file in Terminal. Direct terminal launches stay in the
+# current terminal and do not create another window.
+if [[ -t 0 && -t 1 ]]; then
+  exec "$player" "$@"
+fi
+
+open -a Terminal "$bundle_root/Contents/Resources/run.command"
