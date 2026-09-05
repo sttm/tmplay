@@ -1,4 +1,5 @@
 ▀▀██▀▀ ▄█▀▄▀█ ▄█▀██ ▄█    ▄█▀██ ██  █
+
   ██   ██   █ ██▀▀▀ ██▄▄▄ ██▀██ ▀▀█▀▀
 
 Terminal music player and local music-library tool for macOS, written in
